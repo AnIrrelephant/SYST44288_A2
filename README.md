@@ -1,4 +1,4 @@
-# SYST44288_A2
+# The Birds Approach
 
 Part 1:
 Java Echo Server
