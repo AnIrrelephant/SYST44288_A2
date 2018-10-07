@@ -20,12 +20,16 @@ public class EchoClient {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        if (args.length != 1){
+            System.out.println("This application requires the IP address of the echo server it is sending to as an arguement.");
+            System.exit(0);
+        }
         try {
             Scanner scan = new Scanner(System.in);
-            Socket sock = new Socket("localhost", 6013); //Create socket with server
+            Socket sock = new Socket(args[0], 6013); //Create socket with server
             String echoRequest = null;
 
-            System.out.println("This application will send your data to the server, which will echo it back. Enter the character '~' to exit.");
+            System.out.println("This application will send your data to the server, which will echo it back. Enter the character '.' to exit.");
 
             do {
                 System.out.print("Phrase to server: "); //Get echo from user
@@ -36,7 +40,7 @@ public class EchoClient {
                 String echoedString = recieveEcho(sock); //Get response back
 
                 System.out.println("Server reply> " + echoedString);
-            } while (!echoRequest.equals("~"));
+            } while (!echoRequest.equals("."));
 
             sock.close(); //Close connection
         } catch (IOException ioe) {
